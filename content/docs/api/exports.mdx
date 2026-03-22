@@ -1,0 +1,43 @@
+---
+title: Exports
+description: DOM runtime exports — h, Fragment, text, createRoot.
+---
+
+## h
+
+Creates DOM elements or renders components.
+
+```tish
+// Element
+h("div", { class: "container" }, [h("p", {}, ["Hello"])])
+
+// Component (function)
+h(Greeting, { name: "World" }, [])
+```
+
+When the first argument is a function, it's called as a component with props (including `children` if provided).
+
+## Fragment
+
+Groups children without a wrapper element.
+
+```tish
+h(Fragment, {}, [child1, child2, child3])
+```
+
+In JSX: `<><Child1 /><Child2 /></>`
+
+## text
+
+Returns a string for text nodes. The compiler uses this for interpolated text.
+
+## createRoot
+
+Mounts a component and handles re-renders.
+
+```tish
+let root = createRoot(document.getElementById("root"))
+root.render(App)
+```
+
+After `render`, Lattish will re-render whenever component state changes (via useState, etc.).

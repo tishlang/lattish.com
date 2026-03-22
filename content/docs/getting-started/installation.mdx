@@ -1,0 +1,43 @@
+---
+title: Installation
+description: Install Lattish and set up your Tish JSX project.
+---
+
+## Install
+
+```bash
+npm install lattish
+```
+
+Or with pnpm:
+
+```bash
+pnpm add lattish
+```
+
+## Requirements
+
+- [Tish compiler](https://github.com/tishlang/tish) with `--jsx lattish` (default)
+- Node modules resolution for bare specifiers (e.g. `import ... from 'lattish'`)
+
+## Verify
+
+Create a minimal `App.tish`:
+
+```tish
+import { createRoot, h } from 'lattish'
+
+fn App() {
+  return <div>{"Hello from Lattish!"}</div>
+}
+
+createRoot(document.getElementById("root")).render(App)
+```
+
+Compile with:
+
+```bash
+tish compile App.tish -o app.js --target js --jsx lattish
+```
+
+Include the output in your HTML and you're good to go.

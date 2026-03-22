@@ -1,0 +1,12 @@
+/* Load this last - overrides any Tailwind/tw-animate :root values
+   Lattish uses yellow accent: oklch(0.85 0.18 95)
+*/
+:root {
+  --theme-accent: oklch(0.85 0.18 95);
+  --primary: var(--theme-accent);
+  --accent: var(--theme-accent);
+  --ring: var(--theme-accent);
+  --chart-1: var(--theme-accent);
+  --sidebar-primary: var(--theme-accent);
+  --sidebar-ring: var(--theme-accent);
+}

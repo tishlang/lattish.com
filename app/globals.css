@@ -1,0 +1,185 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Developer-centric dark theme
+   Change --theme-accent to switch the color scheme:
+   - Rose:  oklch(0.72 0.18 5)
+   - Mint:  oklch(0.75 0.18 160)
+   - Blue:  oklch(0.75 0.18 250)
+   - Amber: oklch(0.75 0.18 70)
+   - Yellow: oklch(0.85 0.18 95)
+*/
+:root {
+  /* Single source of truth for accent color - change this to rebrand */
+  --theme-accent: oklch(0.72 0.18 5);
+
+  --background: oklch(0.11 0 0);
+  --foreground: oklch(0.90 0 0);
+  --card: oklch(0.14 0 0);
+  --card-foreground: oklch(0.90 0 0);
+  --popover: oklch(0.14 0 0);
+  --popover-foreground: oklch(0.90 0 0);
+  --primary: var(--theme-accent);
+  --primary-foreground: oklch(0.11 0 0);
+  --secondary: oklch(0.18 0 0);
+  --secondary-foreground: oklch(0.85 0 0);
+  --muted: oklch(0.18 0 0);
+  --muted-foreground: oklch(0.55 0 0);
+  --accent: var(--theme-accent);
+  --accent-foreground: oklch(0.11 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.22 0 0);
+  --input: oklch(0.18 0 0);
+  --ring: var(--theme-accent);
+  --chart-1: var(--theme-accent);
+  --chart-2: oklch(0.65 0.15 200);
+  --chart-3: oklch(0.55 0.12 280);
+  --chart-4: oklch(0.75 0.1 80);
+  --chart-5: oklch(0.6 0.2 330);
+  --radius: 0.25rem;
+  --sidebar: oklch(0.13 0 0);
+  --sidebar-foreground: oklch(0.90 0 0);
+  --sidebar-primary: var(--theme-accent);
+  --sidebar-primary-foreground: oklch(0.11 0 0);
+  --sidebar-accent: oklch(0.18 0 0);
+  --sidebar-accent-foreground: oklch(0.90 0 0);
+  --sidebar-border: oklch(0.22 0 0);
+  --sidebar-ring: var(--theme-accent);
+}
+
+@theme inline {
+  --font-sans: var(--font-jetbrains-mono), 'JetBrains Mono', ui-monospace, monospace;
+  --font-mono: var(--font-jetbrains-mono), 'JetBrains Mono', ui-monospace, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  /* Use --theme-accent directly so Tailwind v4 resolves at runtime */
+  --color-primary: var(--theme-accent);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--theme-accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--theme-accent);
+  --color-chart-1: var(--theme-accent);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--theme-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--theme-accent);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Selection: primary background, black text (scoped to selection only; no -webkit-text-fill-color to avoid leaking to button hover) */
+::selection,
+*::selection {
+  background: var(--primary) !important;
+  color: #000 !important;
+}
+::-moz-selection,
+*::-moz-selection {
+  background: var(--primary) !important;
+  color: #000 !important;
+}
+
+/* Buttons: keep text color on hover/focus so it doesn't turn black (e.g. from selection styles) */
+button:hover,
+button:focus,
+button:active,
+[data-slot="button"]:hover,
+[data-slot="button"]:focus,
+[data-slot="button"]:active {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+}
+
+/* Fade in up on scroll */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Subtle pulse for accents */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+/* Minimal dark scrollbars — code blocks, tables, overflow containers */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.35 0 0) transparent;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: oklch(0.35 0 0);
+  border-radius: 3px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.45 0 0);
+}
+.scrollbar-thin::-webkit-scrollbar-corner {
+  background: transparent;
+}

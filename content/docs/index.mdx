@@ -1,0 +1,54 @@
+---
+title: Lattish Documentation
+description: Lattish runtime for Tish JSX — hooks + DOM helpers for compiled Tish apps.
+template: splash
+hero:
+  tagline: The minimal runtime that powers Tish JSX. useState, createRoot, h, Fragment — everything you need to build reactive UIs with compiled Tish.
+  actions:
+    - text: Get Started
+      link: /getting-started/installation/
+      variant: primary
+    - text: Tish language
+      link: https://tishlang.com
+      variant: outline
+---
+
+## Quick Start
+
+```bash
+npm install lattish
+```
+
+```tish
+import { useState, createRoot, h, Fragment } from 'lattish'
+
+fn App() {
+  let [count, setCount] = useState(0)
+  return <div>
+    <p>{"Count: " + String(count)}</p>
+    <button onclick={() => setCount(count + 1)}>{"Increment"}</button>
+  </div>
+}
+
+createRoot(document.getElementById("root")).render(App)
+```
+
+Requires the [Tish](https://github.com/tishlang/tish) compiler with `--jsx lattish` (default) and node_modules resolution for bare specifiers.
+
+## What is Lattish?
+
+Lattish is the runtime for Tish JSX:
+
+- **h, Fragment, text** — DOM primitives for compiled JSX
+- **createRoot** — mount and re-render components
+- **useState, useRef, useMemo, useEffect, useLayoutEffect** — hooks API
+- **Minimal bundle** — no framework bloat
+
+## Documentation
+
+| Section | Description |
+|---------|-------------|
+| [Installation](/getting-started/installation/) | npm install and setup |
+| [Usage](/getting-started/usage/) | Full example and compiler requirements |
+| [Exports](/api/exports/) | h, Fragment, text, createRoot |
+| [Hooks](/api/hooks/) | useState, useRef, useMemo, useEffect, useLayoutEffect |

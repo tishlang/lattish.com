@@ -1,0 +1,52 @@
+---
+title: Usage
+description: Basic usage of Lattish with Tish JSX.
+---
+
+## Basic Example
+
+```tish
+import { useState, createRoot, h, Fragment } from 'lattish'
+
+fn App() {
+  let [count, setCount] = useState(0)
+  return <div>
+    <p>{"Count: " + String(count)}</p>
+    <button onclick={() => setCount(count + 1)}>{"Increment"}</button>
+  </div>
+}
+
+createRoot(document.getElementById("root")).render(App)
+```
+
+## Compiler Requirements
+
+1. **Target**: Use `--target js` when compiling for the browser.
+2. **JSX**: Use `--jsx lattish` (this is the default).
+3. **Bare specifiers**: Ensure your build resolves `import ... from 'lattish'` to the installed package.
+
+## Component Pattern
+
+Components are plain functions that return JSX:
+
+```tish
+fn Greeting(props) {
+  let name = props.name ?? "World"
+  return <p>{"Hello, " + name + "!"}</p>
+}
+
+fn App() {
+  return <div>
+    <Greeting name="Lattish" />
+  </div>
+}
+```
+
+## Event Handlers
+
+Use lowercase `on` + event name for DOM events:
+
+```tish
+<button onclick={() => setCount(count + 1)}>{"Click"}</button>
+<input oninput={(e) => setText(e.target.value)} />
+```
