@@ -3,12 +3,14 @@
 import { useInView } from "@/hooks/use-in-view";
 
 const runtimes = [
-  { label: "lattish", value: 100, size: "~3kb", highlight: true },
-  { label: "preact", value: 85, size: "~4kb", highlight: false },
-  { label: "react", value: 42, size: "~7kb", highlight: false },
-  { label: "vue", value: 38, size: "~8kb", highlight: false },
-  { label: "svelte", value: 55, size: "~5kb", highlight: false },
+  { label: "lattish", sizeKb: 2.3, size: "~2.3kb", highlight: true },
+  { label: "preact", sizeKb: 4, size: "~4kb", highlight: false },
+  { label: "svelte", sizeKb: 7, size: "~7kb", highlight: false },
+  { label: "vue", sizeKb: 34, size: "~34kb", highlight: false },
+  { label: "react", sizeKb: 43, size: "~43kb", highlight: false },
 ];
+
+const maxSizeKb = Math.max(...runtimes.map((r) => r.sizeKb));
 
 export function Benchmarks() {
   const { ref, inView } = useInView();
@@ -47,27 +49,24 @@ export function Benchmarks() {
                 >
                   {bench.label}
                 </span>
-                <div className="flex-1">
-                  <div className="h-6 w-full rounded-sm bg-secondary">
+                <div className="flex flex-1 items-center gap-3">
+                  <div className="h-6 min-w-0 flex-1 rounded-sm bg-secondary">
                     <div
-                      className={`flex h-full items-center rounded-sm px-3 ${
+                      className={`flex h-full min-w-0 items-center rounded-sm px-3 ${
                         bench.highlight
                           ? "bg-primary"
                           : "bg-muted-foreground/15"
                       }`}
-                      style={{ width: `${bench.value}%` }}
-                    >
-                      <span
-                        className={`text-xs ${
-                          bench.highlight
-                            ? "text-primary-foreground"
-                            : "text-muted-foreground"
-                        }`}
-                      >
-                        {bench.size}
-                      </span>
-                    </div>
+                      style={{ width: `${(bench.sizeKb / maxSizeKb) * 100}%` }}
+                    />
                   </div>
+                  <span
+                    className={`w-14 shrink-0 text-right text-xs ${
+                      bench.highlight ? "text-primary" : "text-muted-foreground"
+                    }`}
+                  >
+                    {bench.size}
+                  </span>
                 </div>
               </div>
             ))}
