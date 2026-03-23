@@ -7,7 +7,7 @@ description: DOM runtime exports — h, Fragment, text, createRoot.
 
 Creates DOM elements or renders components.
 
-```tish
+```javascript
 // Element
 h("div", { class: "container" }, [h("p", {}, ["Hello"])])
 
@@ -21,7 +21,7 @@ When the first argument is a function, it's called as a component with props (in
 
 Groups children without a wrapper element.
 
-```tish
+```javascript
 h(Fragment, {}, [child1, child2, child3])
 ```
 
@@ -35,7 +35,7 @@ Returns a string for text nodes. The compiler uses this for interpolated text.
 
 Mounts a component and handles re-renders.
 
-```tish
+```javascript
 let root = createRoot(document.getElementById("root"))
 root.render(App)
 ```

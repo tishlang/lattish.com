@@ -5,7 +5,7 @@ description: Basic usage of Lattish with Tish JSX.
 
 ## Basic Example
 
-```tish
+```javascript
 import { useState, createRoot, h, Fragment } from 'lattish'
 
 fn App() {
@@ -29,7 +29,7 @@ createRoot(document.getElementById("root")).render(App)
 
 Components are plain functions that return JSX:
 
-```tish
+```javascript
 fn Greeting(props) {
   let name = props.name ?? "World"
   return <p>{"Hello, " + name + "!"}</p>
@@ -46,7 +46,7 @@ fn App() {
 
 Use lowercase `on` + event name for DOM events:
 
-```tish
+```javascript
 <button onclick={() => setCount(count + 1)}>{"Click"}</button>
 <input oninput={(e) => setText(e.target.value)} />
 ```
