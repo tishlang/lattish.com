@@ -119,12 +119,12 @@ export default async function DocsPage({
               prose-headings:font-semibold prose-headings:text-foreground prose-headings:scroll-mt-24
               prose-p:text-foreground/90 prose-li:text-foreground/90
               prose-strong:text-foreground
-              prose-h2:mt-8 prose-h2:border-b prose-h2:border-border prose-h2:pb-2 prose-h2:text-foreground
-              prose-h3:mt-6 prose-h3:text-foreground prose-h4:text-foreground
-              prose-p:leading-7 prose-li:leading-7
-              prose-code:before:content-none prose-code:after:content-none prose-code:text-foreground
-              prose-pre:rounded-lg prose-pre:!bg-zinc-950/80 prose-pre:border prose-pre:border-border
-              prose-th:text-foreground prose-td:text-foreground/90
+              prose-h2:mt-7 prose-h2:border-b prose-h2:border-border prose-h2:pb-2 prose-h2:text-foreground
+              prose-h3:mt-5 prose-h3:text-foreground prose-h4:text-foreground
+              prose-p:leading-6 prose-li:leading-6
+              prose-code:before:content-none prose-code:after:content-none prose-code:text-foreground prose-code:text-xs
+              prose-pre:rounded-lg prose-pre:!bg-zinc-950/80 prose-pre:border prose-pre:border-border prose-pre:text-xs
+              prose-th:text-foreground prose-th:text-xs prose-td:text-foreground/90 prose-td:text-xs
               prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
           >
             {content}

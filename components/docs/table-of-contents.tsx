@@ -22,15 +22,8 @@ export function TableOfContents() {
     const nodes = el.querySelectorAll("h2, h3");
     const list: Heading[] = [];
     nodes.forEach((node) => {
-      const id =
-        node.id ||
-        (node.textContent?.toLowerCase().replace(/\s+/g, "-") ?? "");
-      if (id)
-        list.push({
-          id,
-          text: node.textContent ?? "",
-          level: parseInt(node.tagName[1], 10),
-        });
+      const id = node.id || (node.textContent?.toLowerCase().replace(/\s+/g, "-") ?? "");
+      if (id) list.push({ id, text: node.textContent ?? "", level: parseInt(node.tagName[1], 10) });
     });
     setHeadings(list);
   }, []);
@@ -46,9 +39,7 @@ export function TableOfContents() {
       let current: string | null = null;
       for (const el of elements) {
         const rect = el.getBoundingClientRect();
-        if (rect.top <= SCROLL_OFFSET) {
-          current = el.id;
-        }
+        if (rect.top <= SCROLL_OFFSET) current = el.id;
       }
       setActiveId(current ?? elements[0]?.id ?? null);
     };
@@ -61,21 +52,20 @@ export function TableOfContents() {
   if (headings.length === 0) return null;
 
   return (
-    <nav className="sticky top-24 hidden max-h-[calc(100vh-8rem)] shrink-0 w-48 overflow-y-auto text-sm xl:block scrollbar-thin">
-      <h4 className="mb-3 font-medium text-muted-foreground">On this page</h4>
-      <ul className="flex flex-col gap-1">
+    <nav className="scrollbar-thin sticky top-24 hidden max-h-[calc(100vh-8rem)] w-44 shrink-0 overflow-y-auto text-xs xl:block">
+      <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/50">
+        On this page
+      </p>
+      <ul className="flex flex-col gap-0.5">
         {headings.map((h) => {
           const isActive = activeId === h.id;
           return (
-            <li
-              key={h.id}
-              style={{ paddingLeft: h.level === 3 ? 12 : 0 }}
-              className="leading-tight"
-            >
+            <li key={h.id} style={{ paddingLeft: h.level === 3 ? 10 : 0 }}>
               <a
                 href={`#${h.id}`}
+                title={h.text}
                 className={cn(
-                  "block border-l-2 py-0.5 pr-2 transition-colors -ml-px pl-2",
+                  "block truncate border-l-2 py-1 pr-1 pl-2 -ml-px leading-tight transition-colors",
                   isActive
                     ? "border-primary text-foreground font-medium"
                     : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
