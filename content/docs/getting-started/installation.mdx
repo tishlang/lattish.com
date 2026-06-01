@@ -6,7 +6,7 @@ description: Install Lattish and set up your Tish JSX project.
 ## Install
 
 ```bash
-npm install lattish
+npm install @tishlang/lattish
 ```
 
 Or with pnpm:
@@ -17,27 +17,27 @@ pnpm add lattish
 
 ## Requirements
 
-- [Tish compiler](https://github.com/tishlang/tish) with `--jsx lattish` (default)
-- Node modules resolution for bare specifiers (e.g. `import ... from 'lattish'`)
+- [Tish compiler](https://github.com/tishlang/tish) (JSX support is built in — no flag required)
+- Node modules resolution for bare specifiers (e.g. `import ... from '@tishlang/lattish'`)
 
 ## Verify
 
 Create a minimal `App.tish`:
 
 ```javascript
-import { createRoot, h } from 'lattish'
+import { createRoot, h } from '@tishlang/lattish'
 
 fn App() {
-  return <div>{"Hello from Lattish!"}</div>
+  return <div>Hello from Lattish!</div>
 }
 
 createRoot(document.getElementById("root")).render(App)
 ```
 
-Compile with:
+Build with:
 
 ```bash
-tish compile App.tish -o app.js --target js --jsx lattish
+tish build App.tish -o app.js --target js
 ```
 
-Include the output in your HTML and you're good to go.
+JSX is automatically lowered to Lattish runtime calls — no separate flag is needed. Include the output in your HTML and you're good to go.

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Menu, X, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -16,24 +16,10 @@ const navLinks = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header
-      className={cn(
-        "fixed top-0 z-50 w-full border-b backdrop-blur-sm transition-all duration-300",
-        scrolled
-          ? "border-border bg-background/90"
-          : "border-transparent bg-background/50"
-      )}
-    >
+    <header className="fixed top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
         <Link href="/" className="group flex items-center gap-2 text-foreground">
           <span className="text-primary transition-transform duration-200 group-hover:translate-x-0.5">

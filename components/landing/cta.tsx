@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useInView } from "@/hooks/use-in-view";
+import { SectionBody, SectionEyebrow } from "./typography";
 
 export function CTA() {
   const { ref, inView } = useInView();
@@ -21,18 +22,18 @@ export function CTA() {
               "opacity 0.5s ease, transform 0.5s ease, border-color 0.5s",
           }}
         >
-          <p className="text-xs text-primary">get started</p>
+          <SectionEyebrow>get started</SectionEyebrow>
           <h2 className="mt-2 text-xl font-medium text-foreground md:text-2xl">
             start building with lattish
           </h2>
-          <p className="mt-2 max-w-md text-xs leading-relaxed text-muted-foreground">
+          <SectionBody className="mt-2 max-w-md">
             install the runtime, compile your tish jsx with the tish compiler,
             and run in the browser. hooks, dom, and nothing else.
-          </p>
+          </SectionBody>
 
           <div className="mt-6 flex items-center gap-2 border border-border bg-card px-4 py-2.5 w-fit">
             <span className="text-primary text-xs">$</span>
-            <code className="text-xs text-foreground">npm install lattish</code>
+            <code className="text-xs text-foreground">npm install @tishlang/lattish</code>
             <span className="animate-blink inline-block h-3.5 w-1 bg-primary" />
           </div>
 

@@ -77,7 +77,7 @@ export default async function DocsPage({
                     })}
                   >
                     {a.variant === "primary" ? (
-                      <Button size="sm" className="group h-8 text-xs lowercase">
+                      <Button size="sm" className="group h-8 cursor-pointer text-xs lowercase">
                         {a.text.toLowerCase()}
                         <ArrowRight className="ml-1.5 h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                       </Button>
@@ -85,7 +85,7 @@ export default async function DocsPage({
                       <Button
                         size="sm"
                         variant="outline"
-                        className="h-8 text-xs lowercase border-border text-foreground transition-colors hover:border-primary/40 hover:bg-secondary"
+                        className="h-8 cursor-pointer text-xs lowercase border-border text-foreground transition-colors hover:border-primary/40 hover:bg-secondary"
                       >
                         {a.text.toLowerCase()}
                         {isExternal && (

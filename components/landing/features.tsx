@@ -1,6 +1,7 @@
 "use client";
 
 import { useInView } from "@/hooks/use-in-view";
+import { SectionBody, SectionEyebrow } from "./typography";
 
 const sections = [
   {
@@ -38,13 +39,13 @@ const sections = [
     title: "minimal bundle",
     subtitle: "tiny runtime, zero bloat",
     description:
-      "lattish is a small runtime designed for compiled tish jsx. no framework overhead, no extra abstractions. ship the code you write, not a giant library. works with tish's --target js and --jsx lattish.",
+      "lattish is a small runtime designed for compiled tish jsx. no framework overhead, no extra abstractions. ship the code you write, not a giant library. works with tish build --target js (jsx is built in — no extra flag).",
     capabilities: [
       "tiny footprint for production builds",
       "no external framework dependency",
-      "works with tish compiler --jsx lattish",
+      "jsx is automatic in tish build --target js",
       "node_modules resolution for bare specifiers",
-      "npm install lattish — that's it",
+      "npm install @tishlang/lattish — that's it",
       "open source, permissive license",
     ],
   },
@@ -68,23 +69,23 @@ export function Features() {
           >
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
               <div>
-                <p className="text-xs text-primary">{section.number}</p>
+                <SectionEyebrow>{section.number}</SectionEyebrow>
                 <h2 className="mt-2 text-xl font-medium leading-tight text-foreground md:text-2xl">
                   {section.title}
                 </h2>
-                <p className="mt-2 text-xs text-primary">
+                <SectionEyebrow className="mt-2">
                   {section.subtitle}
-                </p>
-                <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+                </SectionEyebrow>
+                <SectionBody className="mt-4">
                   {section.description}
-                </p>
+                </SectionBody>
               </div>
 
               <div className="flex flex-col justify-end">
                 <div className="border border-border p-5 transition-colors duration-500 hover:border-primary/20">
-                  <p className="mb-4 text-xs text-muted-foreground/60">
+                  <SectionBody className="mb-4 text-muted-foreground/60">
                     {"// capabilities"}
-                  </p>
+                  </SectionBody>
                   <ul className="flex flex-col gap-3">
                     {section.capabilities.map((cap) => (
                       <li

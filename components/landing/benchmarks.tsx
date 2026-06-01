@@ -1,6 +1,7 @@
 "use client";
 
 import { useInView } from "@/hooks/use-in-view";
+import { SectionBody, SectionEyebrow } from "./typography";
 
 const runtimes = [
   { label: "lattish", sizeKb: 2.3, size: "~2.3kb", highlight: true },
@@ -28,15 +29,15 @@ export function Benchmarks() {
           }}
         >
           <div>
-            <p className="text-xs text-primary">lightweight</p>
+            <SectionEyebrow>lightweight</SectionEyebrow>
             <h2 className="mt-2 text-xl font-medium leading-tight text-foreground md:text-2xl">
               minimal runtime, maximum efficiency
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            <SectionBody className="mt-2">
               lattish is a tiny runtime built for compiled tish jsx. hooks and
               dom helpers only — no framework overhead. smaller bundle, faster
               load. relative size comparison (gzipped, approximate).
-            </p>
+            </SectionBody>
           </div>
 
           <div className="flex flex-col justify-end gap-4">

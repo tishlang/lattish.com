@@ -16,24 +16,24 @@ hero:
 ## Quick Start
 
 ```bash
-npm install lattish
+npm install @tishlang/lattish
 ```
 
 ```javascript
-import { useState, createRoot, h, Fragment } from 'lattish'
+import { useState, createRoot, h, Fragment } from '@tishlang/lattish'
 
 fn App() {
   let [count, setCount] = useState(0)
   return <div>
     <p>{"Count: " + String(count)}</p>
-    <button onclick={() => setCount(count + 1)}>{"Increment"}</button>
+    <button onclick={() => setCount(count + 1)}>Increment</button>
   </div>
 }
 
 createRoot(document.getElementById("root")).render(App)
 ```
 
-Requires the [Tish](https://github.com/tishlang/tish) compiler with `--jsx lattish` (default) and node_modules resolution for bare specifiers.
+Requires the [Tish](https://github.com/tishlang/tish) compiler and node_modules resolution for bare specifiers. JSX support is built in — `tish build --target js` always lowers JSX to Lattish runtime calls.
 
 ## What is Lattish?
 

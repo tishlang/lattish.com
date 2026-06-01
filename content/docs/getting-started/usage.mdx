@@ -6,13 +6,13 @@ description: Basic usage of Lattish with Tish JSX.
 ## Basic Example
 
 ```javascript
-import { useState, createRoot, h, Fragment } from 'lattish'
+import { useState, createRoot, h, Fragment } from '@tishlang/lattish'
 
 fn App() {
   let [count, setCount] = useState(0)
   return <div>
     <p>{"Count: " + String(count)}</p>
-    <button onclick={() => setCount(count + 1)}>{"Increment"}</button>
+    <button onclick={() => setCount(count + 1)}>Increment</button>
   </div>
 }
 
@@ -22,8 +22,8 @@ createRoot(document.getElementById("root")).render(App)
 ## Compiler Requirements
 
 1. **Target**: Use `--target js` when compiling for the browser.
-2. **JSX**: Use `--jsx lattish` (this is the default).
-3. **Bare specifiers**: Ensure your build resolves `import ... from 'lattish'` to the installed package.
+2. **JSX**: Built in — `tish build` always lowers JSX to Lattish runtime calls. No flag.
+3. **Bare specifiers**: Ensure your build resolves `import ... from '@tishlang/lattish'` to the installed package.
 
 ## Component Pattern
 
@@ -47,6 +47,6 @@ fn App() {
 Use lowercase `on` + event name for DOM events:
 
 ```javascript
-<button onclick={() => setCount(count + 1)}>{"Click"}</button>
+<button onclick={() => setCount(count + 1)}>Click</button>
 <input oninput={(e) => setText(e.target.value)} />
 ```

@@ -68,7 +68,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 md:flex-row">
           <p className="text-xs text-muted-foreground">
-            Lattish is open source. Part of the Tish ecosystem.
+            Lattish is free and open source. Part of the Tish ecosystem.
           </p>
         </div>
       </div>
