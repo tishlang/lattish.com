@@ -41,3 +41,39 @@ root.render(App)
 ```
 
 After `render`, Lattish will re-render whenever component state changes (via useState, etc.).
+
+### Custom host (non-DOM targets)
+
+`createRoot` takes an optional second argument — a **host config** — so the same hooks and
+reconciler can drive a target other than the DOM (a terminal, a canvas, a test shadow tree).
+Omit it and Lattish uses the built-in DOM host unchanged.
+
+```javascript
+createRoot(container, host).render(App)
+```
+
+A host is a plain object implementing the node operations the reconciler calls. The shape mirrors
+react-reconciler's host config:
+
+| Method | Purpose |
+| --- | --- |
+| `createElement(tag)` | create an element node for `tag` |
+| `createText(value)` | create a text node |
+| `createComment()` | create a comment/placeholder node |
+| `createFragment()` | create a fragment container |
+| `isText(node)` | is this a text node? |
+| `setText(node, value)` | update a text node's value in place |
+| `appendChild(parent, child)` | append `child` to `parent` |
+| `removeChild(parent, child)` | remove `child` from `parent` |
+| `replaceChild(parent, newChild, oldChild)` | replace `oldChild` with `newChild` |
+| `replaceChildren(parent, nodes)` | replace all of `parent`'s children with `nodes` |
+| `childAt(parent, i)` | the child at index `i` |
+| `firstChild(parent)` | the first child of `parent` |
+| `mountProp(el, tag, key, value)` | apply a prop on first mount |
+| `patchProp(el, tag, key, value, prev)` | update a prop on re-render |
+| `styleRemoved(el)` | a `style` prop was removed — clear it |
+| `setRef(refObj, value)` | assign a ref (`refObj.current = value`) |
+
+Each root remembers its own host, so DOM roots and custom-host roots can coexist in one app.
+
+> Lattish **2.0** is built on the tish **2.0** toolchain (`@tishlang/tish ^2.0.0`).
